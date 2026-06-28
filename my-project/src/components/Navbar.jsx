@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
+import ait_logo from "../assets/ait_logo.png";
+import baja from "../assets/baja1.jpeg";
 
 export default function Navbar() {
   const [active, setActive] = useState("home");
 
   const navItems = [
     { name: "Home", id: "home" },
-    { name: "About", id: "about" },
+    { name: "About us", id: "about" },
     { name: "Our Car", id: "car" },
     { name: "Team", id: "team" },
     { name: "Sponsors", id: "sponsors" },
@@ -50,29 +52,43 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="sticky top-0 z-50 bg-black border-b border-gray-800 px-10 py-4 flex justify-between items-center">
-      
-      <h1 className="text-xl font-bold text-red-500 cursor-pointer"
-          onClick={() => handleClick("home")}
-      >
-        INCEPTOR
-      </h1>
+    <nav className="sticky top-0 z-50 bg-gray-100 border-b border-gray-300 px-16 h-20 flex justify-between items-center">
 
-      <ul className="flex gap-6 text-sm">
-        {navItems.map((item) => (
-          <li
-            key={item.id}
-            onClick={() => handleClick(item.id)}
-            className={`cursor-pointer pb-1 transition-all duration-300 ${
-              active === item.id
-                ? "text-red-500 border-b-2 border-red-500"
-                : "hover:text-red-400"
-            }`}
-          >
-            {item.name}
-          </li>
-        ))}
-      </ul>
-    </nav>
+  {/* LOGO */}
+  <h1
+    className="cursor-pointer flex items-center"
+    onClick={() => handleClick("home")}
+  >
+    <img
+      src={ait_logo}
+      alt="logo2"
+      className="h-16 w-auto object-contain pr-2"
+    />
+    <span className="font-bold text-xl text-black pl-2 pr-2">INCEPTOR</span>
+    <img
+      src={baja}
+      alt="logo"
+      className="h-16 w-auto object-contain pl-2"
+    />
+  </h1>
+
+  {/* NAV ITEMS */}
+  <ul className="flex gap-8 text-sm font-medium">
+    {navItems.map((item) => (
+      <li
+        key={item.id}
+        onClick={() => handleClick(item.id)}
+        className={`cursor-pointer pb-1 transition-all duration-300 ${
+          active === item.id
+            ? "text-red-500 border-b-2 border-red-500"
+            : "text-gray-700 hover:text-red-500"
+        }`}
+      >
+        {item.name}
+      </li>
+    ))}
+  </ul>
+
+</nav>
   );
 }

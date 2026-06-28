@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 <link href="/src/style.css" rel="stylesheet"></link>
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
+import Home from "./components/Home";
 import About from "./components/About";
 import Car from "./components/Car";
 import Team from "./components/Team";
@@ -15,9 +15,9 @@ function App() {
 
   return (
     <>
-    <div className="bg-black text-white font-sans">
+    <div className="bg-black text-white font-sans bg-gradient-to-b from-black to-zinc-900">
       <Navbar />
-      <Hero />
+      <Home />
       <About />
       <Car />
       <Team />
