@@ -26,7 +26,7 @@ export default function Home() {
         </h1>
 
         {/* SMALL TEXT */}
-        <p className="mt-6 text-lg md:text-xl text-gray-200">
+        <p className="mt-6 text-lg md:text-xl !text-gray-400">
           Engineering Tomorrow. Built for Speed, Innovation & Victory.
         </p>
 

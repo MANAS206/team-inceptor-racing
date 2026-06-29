@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import './index.css'
 <link href="/src/style.css" rel="stylesheet"></link>
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
@@ -15,7 +16,7 @@ function App() {
 
   return (
     <>
-    <div className="bg-black text-white font-sans bg-gradient-to-b from-black to-zinc-900">
+    <div className="bg-black text-black font-sans bg-gradient-to-b from-black to-zinc-900">
       <Navbar />
       <Home />
       <About />

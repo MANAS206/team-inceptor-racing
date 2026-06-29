@@ -11,7 +11,7 @@ export default function About() {
         className="grid md:grid-cols-2 gap-16 items-center px-20 py-24"
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 1.4 }}
       >
 
         {/* TEXT */}
@@ -47,7 +47,7 @@ export default function About() {
 
       {/* SECTION 2 */}
       <motion.div 
-        className="grid md:grid-cols-2 gap-16 items-center px-20 py-24"
+        className="grid md:grid-cols-2 gap-10 items-center px-20 py-24"
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}

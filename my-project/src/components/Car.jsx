@@ -12,7 +12,7 @@ export default function Car() {
         initial={{ opacity: 0, y: -40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-10xl font-bold tracking-tight mb-4 !text-black"
+        className="text-6xl font-bold mb-5 !text-black"
       >
         E-BAJA
       </motion.h2>
