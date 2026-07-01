@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import carImg from "../assets/e-baja.jpg";
-import teamImg from "../assets/e-baja.jpg";
+import about1 from "../assets/about1.jpeg";
+import about2 from "../assets/about2.jpeg";
 
 export default function About() {
   return (
@@ -21,9 +21,9 @@ export default function About() {
           </h1>
 
           <p className="text-gray-600 text-lg leading-relaxed text-left">
-            Inceptor Racing is a Formula Student team driven by innovation,
-            engineering excellence, and performance. We build not just cars,
-            but future engineers who thrive under challenges.
+            We are Team Inceptor Racing, the official BAJA SAE team of the Army Institute of Technology (AIT), Pune.
+            We operate under the SAE AIT Collegiate Club, a platform where students design and build vehicles for major 
+            national competitions including BAJA, SUPRA, and EFWDC.
           </p>
 
           <button className="mt-8 bg-red-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-red-600 hover:scale-105 transition-all duration-300">
@@ -34,7 +34,7 @@ export default function About() {
         {/* IMAGE */}
         <div className="relative group">
           <img
-            src={carImg}
+            src={about1}
             alt="car"
             className="rounded-2xl shadow-xl w-full object-cover group-hover:scale-105 transition duration-500"
           />
@@ -56,7 +56,7 @@ export default function About() {
         {/* IMAGE */}
         <div className="relative group">
           <img
-            src={teamImg}
+            src={about2}
             alt="team"
             className="rounded-2xl shadow-xl w-full object-cover group-hover:scale-105 transition duration-500"
           />
@@ -67,13 +67,13 @@ export default function About() {
         {/* TEXT */}
         <div>
           <h2 className="text-4xl font-bold text-left !text-black mb-6">
-            Our Mission: Engineering Excellence
+            Our Mission: BAJA 2027
           </h2>
 
           <p className="text-gray-600 text-lg leading-relaxed text-left">
-            Our mission is to design high-performance vehicles while building
-            a culture of teamwork, creativity, and innovation. We aim to
-            compete at the highest level and continuously push our limits.
+            Right now, Team Inceptor Racing is actively working on eBAJA 2027.
+            Our current focus is on engineering a high-performance, fully electric all-terrain vehicle built to
+            endure the toughest off-road environments and keep our team at the forefront of sustainable collegiate racing.
           </p>
         </div>
 

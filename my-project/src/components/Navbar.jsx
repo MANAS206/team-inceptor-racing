@@ -1,112 +1,115 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ait_logo from "../assets/ait_logo.png";
-import baja from "../assets/baja1.jpeg";
+import army_logo from "../assets/baja1.jpeg";
 
 export default function Navbar() {
-  const [active, setActive] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // NAV ITEMS WITH IDs
   const navItems = [
     { name: "Home", id: "home" },
-    { name: "About us", id: "about" },
+    { name: "About Us", id: "about" },
     { name: "Our Car", id: "car" },
     { name: "Team", id: "team" },
     { name: "Sponsors", id: "sponsors" },
     { name: "Contact", id: "contact" },
   ];
 
+  // SCROLL FUNCTION
   const handleClick = (id) => {
     const section = document.getElementById(id);
 
     if (section) {
       window.scrollTo({
-        top: section.offsetTop - 80,
+        top: section.offsetTop - 70, // adjust for navbar height
         behavior: "smooth",
       });
-      setMenuOpen(false); // close mobile menu
     }
+
+    setMenuOpen(false); // close mobile menu
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      navItems.forEach((item) => {
-        const section = document.getElementById(item.id);
-
-        if (section) {
-          const top = section.offsetTop - 100;
-          const height = section.offsetHeight;
-
-          if (
-            window.scrollY >= top &&
-            window.scrollY < top + height
-          ) {
-            setActive(item.id);
-          }
-        }
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <nav className="sticky top-0 z-50 bg-gray-100 border-b border-gray-300 px-6 md:px-16 h-20 flex justify-between items-center">
+    <>
+      {/*  TOP WHITE BAR (NOT FIXED) */}
+      <div className="bg-white py-3 px-4 md:px-10 border-b">
+        <div className="flex items-center justify-between">
 
-      {/* LOGO */}
-      <div
-        className="cursor-pointer flex items-center"
-        onClick={() => handleClick("home")}
-      >
-        <img src={ait_logo} className="h-10 md:h-14 object-contain" />
-        <span className="font-bold text-lg md:text-xl text-black px-2">
-          INCEPTOR
-        </span>
-        <img src={baja} className="h-10 md:h-14 object-contain" />
+          {/* LEFT LOGO */}
+          <a href="https://www.aitpune.com/">
+            <img
+              src={ait_logo}
+              alt="logo"
+              className="h-10 md:h-14 object-contain"
+            />
+          </a>
+
+          {/* CENTER TEXT */}
+          <div className="text-center">
+            <h1 className="text-lg md:text-2xl font-bold text-green-700">
+              Team Inceptor Racing
+            </h1>
+            <p className="text-xs md:text-sm text-gray-500">
+              Engineering Tomorrow. Built for Speed & Innovation.
+            </p>
+          </div>
+
+          {/* RIGHT LOGO */}
+          <a
+            href="https://www.indianarmy.nic.in/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src={army_logo}
+              alt="logo"
+              className="h-10 md:h-14 object-contain"
+            />
+          </a>
+        </div>
       </div>
 
-      {/* DESKTOP MENU */}
-      <ul className="hidden md:flex gap-8 text-sm font-medium">
-        {navItems.map((item) => (
-          <li
-            key={item.id}
-            onClick={() => handleClick(item.id)}
-            className={`cursor-pointer pb-1 transition-all duration-300 ${
-              active === item.id
-                ? "text-red-500 border-b-2 border-red-500"
-                : "text-gray-700 hover:text-red-500"
-            }`}
+      {/*  FIXED BLUE NAVBAR */}
+      <nav className="sticky top-0 z-50 bg-green-700 text-white">
+        <div className="flex items-center justify-between px-6 md:px-16 h-14">
+
+          {/*  MOBILE MENU BUTTON */}
+          <div
+            className="md:hidden text-2xl text-black cursor-pointer"
+            onClick={() => setMenuOpen(!menuOpen)}
           >
-            {item.name}
-          </li>
-        ))}
-      </ul>
+            ☰
+          </div>
 
-      {/* MOBILE MENU BUTTON */}
-      <div
-      className="md:hidden text-black text-2xl p-2 rounded-md hover:bg-gray-200 transition cursor-pointer"
-      onClick={() => setMenuOpen(!menuOpen)}>
-        ☰
+          {/*  DESKTOP MENU */}
+          <ul className="hidden md:flex gap-6 text-sm font-medium mx-auto">
+            {navItems.map((item) => (
+              <li
+                key={item.id}
+                onClick={() => handleClick(item.id)}
+                className="cursor-pointer hover:text-gray-200 transition"
+              >
+                {item.name}
+              </li>
+            ))}
+          </ul>
         </div>
 
-      {/* MOBILE DROPDOWN */}
-      {menuOpen && (
-        <div className="absolute top-20 left-0 w-full bg-gray-100 border-t border-gray-300 flex flex-col items-center gap-6 py-6 md:hidden">
-          {navItems.map((item) => (
-            <div
-              key={item.id}
-              onClick={() => handleClick(item.id)}
-              className={`cursor-pointer text-lg ${
-                active === item.id
-                  ? "text-red-500"
-                  : "text-gray-700"
-              }`}
-            >
-              {item.name}
-            </div>
-          ))}
-        </div>
-      )}
-    </nav>
+        {/*  MOBILE DROPDOWN */}
+        {menuOpen && (
+          <div className="md:hidden flex flex-col items-center gap-4 py-4 bg-cyan-600">
+            {navItems.map((item) => (
+              <div
+                key={item.id}
+                onClick={() => handleClick(item.id)}
+                className="cursor-pointer"
+              >
+                {item.name}
+              </div>
+            ))}
+          </div>
+        )}
+      </nav>
+    </>
   );
 }

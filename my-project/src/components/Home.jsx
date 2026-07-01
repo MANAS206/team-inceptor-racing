@@ -1,41 +1,39 @@
-import carImg from "../assets/e-baja.jpg";
+import { useState, useEffect } from "react";
+import img1 from "../assets/ait photo.jpg";
+import img2 from "../assets/home1.jpeg";
+import img3 from "../assets/home2.jpeg";
 
 export default function Home() {
+  const images = [img1, img2, img3];
+  const [current, setCurrent] = useState(0);
+
+  // 🔥 AUTO SLIDE
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % images.length);
+    }, 7000); // change every 3 sec
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center justify-center text-center text-white"
-    >
-      {/* BACKGROUND IMAGE */}
-      <img
-        src={carImg}
-        alt="bg"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
+    <section id="home" className="relative w-full h-[70vh] md:h-[90vh] overflow-hidden">
 
-      {/* DARK OVERLAY */}
-      <div className="absolute inset-0 bg-black/60"></div>
-
-      {/* CONTENT */}
-      <div className="relative z-10 max-w-4xl px-6">
-
-        {/* MAIN HEADING */}
-        <h1 className="text-5xl md:text-7xl font-extrabold leading-tight">
-          <span className="text-white">TEAM INCEPTOR</span> <br />
-          <span className="text-white">RACING</span>
-        </h1>
-
-        {/* SMALL TEXT */}
-        <p className="mt-6 text-lg md:text-xl !text-gray-400">
-          Engineering Tomorrow. Built for Speed, Innovation & Victory.
-        </p>
-
-        {/* BUTTON */}
-        <button className="mt-8 bg-red-500 px-8 py-3 rounded-md text-white font-semibold hover:bg-red-600 transition transform hover:scale-105 shadow-lg">
-          Explore Car →
-        </button>
-
+      {/* SLIDER */}
+      <div
+        className="flex transition-transform duration-700"
+        style={{ transform: `translateX(-${current * 100}%)` }}
+      >
+        {images.map((img, index) => (
+          <img
+            key={index}
+            src={img}
+            className="w-full h-[70vh] md:h-[90vh] object-cover flex-shrink-0"
+          />
+        ))}
       </div>
+
+      
     </section>
   );
 }

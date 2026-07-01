@@ -2,13 +2,13 @@ import { FaInstagram, FaLinkedin, FaEnvelope, FaPhone } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-black border-t border-gray-800 px-16 py-12">
+    <footer className="bg-white border-t border-gray-800 px-16 py-12">
 
       <div>
 
         {/* LEFT - BRAND */}
         <div>
-          <h2 className="text-2xl font-bold text-red-500">
+          <h2 className="text-2xl font-bold text-green-600">
             INCEPTOR RACING
           </h2>
           <p className="text-gray-400 mt-4">
