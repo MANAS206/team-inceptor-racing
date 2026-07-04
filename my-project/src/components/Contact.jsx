@@ -34,7 +34,7 @@ export default function Contact() {
       return;
     }
 
-    // 🔥 GOOGLE FORM URL (REPLACE ENTRY IDs)
+    //  GOOGLE FORM URL (REPLACE ENTRY IDs)
     const formURL = `https://docs.google.com/forms/d/e/1FAIpQLSdI0LTApneWSc2WLYMb_wGQzwwzNtb4DArYYzfTuSPuX3rx8w/formResponse?usp=pp_url&entry.177378469=${formData.name}&entry.783685077=${formData.email}&entry.1037066672=${formData.message}`;
 
     fetch(formURL, {
