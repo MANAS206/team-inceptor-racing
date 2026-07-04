@@ -1,4 +1,4 @@
-import { FaInstagram, FaLinkedin, FaEnvelope, FaPhone } from "react-icons/fa";
+import { FaInstagram, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -18,15 +18,37 @@ export default function Footer() {
 
         {/* MIDDLE - CONTACT */}
         <div className="py-5">
-          <h3 className="text-lg font-semibold mb-4 text-left ">Contact</h3>
+          <h3 className="text-lg font-semibold mb-4 text-left">Contact</h3>
 
+          {/*LOCATION ADDED */}
+          <a
+            href="https://maps.google.com/?q=Army Institute of Technology Pune"
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-2 py-2 text-black-400 mt-2 "
+          >
+            <FaMapMarkerAlt />
+            Army Institute of Technology, Pune
+          </a>
+
+          <a 
+            href="mailto:teaminceptorracing@gmail.com"
+            target="_blank"
+            rel="noreferrer"
+            >
           <p className="flex items-center gap-2 text-gray-400">
-            <FaEnvelope /> inceptorracing@gmail.com
+            <FaEnvelope /> teaminceptorracing@gmail.com
+          </p>
+          </a>
+
+          <p className="flex items-center gap-2 text-gray-400 mt-2">
+            <FaPhone /> +91 6202193598
           </p>
 
           <p className="flex items-center gap-2 text-gray-400 mt-2">
-            <FaPhone /> +91 9876543210
+            <FaPhone /> +91 9166398921
           </p>
+
         </div>
 
         {/* RIGHT - SOCIAL */}
@@ -36,7 +58,7 @@ export default function Footer() {
           <div className="flex gap-4 text-xl">
 
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/teaminceptorracing?igsh=MTFsOWQ2N2Yyand4Zw=="
               target="_blank"
               className="hover:text-red-500"
             >
@@ -44,7 +66,7 @@ export default function Footer() {
             </a>
 
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/company/team-inceptor-racing/"
               target="_blank"
               className="hover:text-red-500"
             >

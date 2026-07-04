@@ -7,11 +7,11 @@ export default function Home() {
   const images = [img1, img2, img3];
   const [current, setCurrent] = useState(0);
 
-  // 🔥 AUTO SLIDE
+  //  AUTO SLIDE
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
-    }, 7000); // change every 3 sec
+    }, 5000); // change every 3 sec
 
     return () => clearInterval(interval);
   }, []);
