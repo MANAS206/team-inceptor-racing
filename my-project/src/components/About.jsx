@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import about1 from "../assets/about1.jpeg";
 import about2 from "../assets/about2.jpeg";
+import { Link } from "react-router-dom";
 
 export default function About() {
   return (
@@ -25,10 +26,12 @@ export default function About() {
             We operate under the SAE AIT Collegiate Club, a platform where students design and build vehicles for major 
             national competitions including BAJA, SUPRA, and EFWDC.
           </p>
-
-          <button className="mt-6 md:mt-8 bg-red-500 text-white px-5 py-2 md:px-6 md:py-3 rounded-lg shadow-md hover:bg-red-600 hover:scale-105 transition-all duration-300">
-            Learn More →
-          </button>
+          <Link
+  to="/learn-more"
+  className="inline-block mt-6 md:mt-8 bg-red-500 text-white px-5 py-2 md:px-6 md:py-3 rounded-lg shadow-md hover:bg-red-600 hover:scale-105 transition-all duration-300"
+>
+  Learn More →
+</Link>
         </div>
 
         {/* IMAGE */}

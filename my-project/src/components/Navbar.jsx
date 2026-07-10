@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import ait_logo from "../assets/ait_logo.png";
 import army_logo from "../assets/baja1.jpeg";
 
@@ -13,6 +14,7 @@ export default function Navbar() {
     { name: "Team", id: "team" },
     { name: "Sponsors", id: "sponsors" },
     { name: "Contact", id: "contact" },
+    { name: "Gallery", path: "/gallery", type: "route" },
   ];
 
   // SCROLL FUNCTION
@@ -83,16 +85,21 @@ export default function Navbar() {
 
           {/*  DESKTOP MENU */}
           <ul className="hidden md:flex gap-6 text-sm font-medium mx-auto">
-            {navItems.map((item) => (
-              <li
-                key={item.id}
-                onClick={() => handleClick(item.id)}
-                className="cursor-pointer hover:text-gray-200 transition"
-              >
-                {item.name}
-              </li>
-            ))}
-          </ul>
+  {navItems.map((item, index) => (
+    <li key={index}>
+      {item.type === "route" ? (
+        <Link to={item.path}>{item.name}</Link>
+      ) : (
+        <span
+          onClick={() => handleClick(item.id)}
+          className="cursor-pointer hover:text-gray-200 transition"
+        >
+          {item.name}
+        </span>
+      )}
+    </li>
+  ))}
+</ul>
         </div>
 
         {/*  MOBILE DROPDOWN */}

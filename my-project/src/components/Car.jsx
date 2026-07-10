@@ -1,4 +1,4 @@
-import carImg from "../assets/e-baja.jpg";
+import carImg from "../assets/ebaja.jpg";
 import { motion } from "framer-motion";
 
 export default function Car() {

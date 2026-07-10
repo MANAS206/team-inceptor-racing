@@ -30,7 +30,7 @@ export default function Contact() {
       formData.message === "" ||
       !isValidEmail(formData.email)
     ) {
-      setStatus("❌ Please enter valid details");
+      setStatus(" Please enter valid details");
       return;
     }
 
@@ -46,7 +46,7 @@ export default function Contact() {
         setFormData({ name: "", email: "", message: "" });
       })
       .catch(() => {
-        setStatus("❌ Something went wrong");
+        setStatus(" Something went wrong");
       });
   };
 
