@@ -6,6 +6,7 @@ import sponsors4 from "../assets/C2M.png";
 export default function Sponsors() {
   const sponsors = [
     sponsors1, sponsors2, sponsors3, sponsors4,
+    sponsors1, sponsors2, sponsors3, sponsors4,
     sponsors1, sponsors2, sponsors3, sponsors4 // loop
   ];
 

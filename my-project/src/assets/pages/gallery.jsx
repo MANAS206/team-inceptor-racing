@@ -1,6 +1,12 @@
 import { useState } from "react";
 
 // ✅ IMPORT IMAGES CORRECTLY
+import h1 from "../../galleryPhoto/a1.jpeg";
+import h2 from "../../galleryPhoto/a2.jpeg";
+import h3 from "../../galleryPhoto/a3.jpeg";
+import h4 from "../../galleryPhoto/a4.jpeg";
+import h5 from "../../galleryPhoto/a5.jpeg";
+
 import g0 from "../../galleryPhoto/1 Cover.jpg";
 import g1 from "../../galleryPhoto/1.jpg";
 import g2 from "../../galleryPhoto/2.jpg";
@@ -20,14 +26,14 @@ export default function Gallery() {
 
   const albums = [
     {
-      title: "Albatros XIII-2025",
-      year: "2025",
-      cover: ebaja,
+      title: "E-BAJA",
+      year: "2026-27",
+      cover: h1,
       images: [
-        ebaja,
-        g1,
-        g2,
-        g3,
+        h2,
+        h3,
+        h4,
+        h5,
       ],
     },
     {
@@ -96,18 +102,22 @@ export default function Gallery() {
             </div>
 
             {/* GRID */}
-            {activeAlbumIndex === index && (
-              <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 animate-fadeIn">
-                {album.images.map((img, i) => (
-                  <img
-                    key={i}
-                    src={img}
-                    onClick={() => setSelectedIndex(i)}
-                    className="cursor-pointer rounded-lg shadow hover:scale-105 transition"
-                  />
-                ))}
-              </div>
-            )}
+           {activeAlbumIndex === index && (
+  <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 animate-fadeIn">
+    {album.images.map((img, i) => (
+      <div
+        key={i}
+        onClick={() => setSelectedIndex(i)}
+        className="cursor-pointer w-full h-52 overflow-hidden rounded-lg shadow hover:scale-105 transition"
+      >
+        <img
+          src={img}
+          className="w-full h-full object-cover transition duration-300 hover:scale-110"
+        />
+      </div>
+    ))}
+  </div>
+)}
 
           </div>
         ))}

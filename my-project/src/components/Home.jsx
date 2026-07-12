@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import img1 from "../assets/aitphoto3.jpeg";
+import img1 from "../assets/aitphoto3.JPG";
 import img2 from "../assets/home1.jpeg";
 import img3 from "../assets/home2.jpeg";
 
@@ -11,7 +11,7 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
-    }, 3000); // change every 3 sec
+    }, 4000); // change every 3 sec
 
     return () => clearInterval(interval);
   }, []);
