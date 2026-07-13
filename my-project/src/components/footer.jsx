@@ -13,7 +13,7 @@ export default function Footer() {
       {/* CONTAINER */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
-        {/* 🔥 CENTERED BRAND */}
+        {/* CENTERED BRAND */}
         <div className="text-center mb-6">
           <h2 className="text-2xl font-bold text-green-600">
             TEAM INCEPTOR RACING

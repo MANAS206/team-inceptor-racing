@@ -125,7 +125,7 @@ export default function Team() {
         Team Leads
       </h3>
 
-      {/* 🔥 4 PER ROW */}
+      {/* 4 PER ROW */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-10">
         {teamLeads.map((m, i) => <Card key={i} member={m} />)}
       </div>

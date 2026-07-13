@@ -16,7 +16,7 @@ export default function Navbar() {
     { name: "Gallery", path: "/gallery", type: "route" },
   ];
 
-  // ✅ IMPROVED SCROLL FUNCTION (FIXED MOBILE ISSUE)
+  //  IMPROVED SCROLL FUNCTION (FIXED MOBILE ISSUE)
   const handleClick = (id) => {
     const section = document.getElementById(id);
 
@@ -105,7 +105,7 @@ export default function Navbar() {
           </ul>
         </div>
 
-        {/* ✅ MOBILE DROPDOWN (UPDATED) */}
+        {/*  MOBILE DROPDOWN (UPDATED) */}
         {menuOpen && (
           <div className="md:hidden flex flex-col items-center gap-4 py-4 bg-green-200 text-black">
             {navItems.map((item, index) =>
