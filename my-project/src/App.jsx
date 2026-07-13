@@ -1,7 +1,5 @@
-import { useState } from 'react'
-import './App.css'
-import './index.css'
-<link href="/src/style.css" rel="stylesheet"></link>
+import "./App.css";
+import "./index.css";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
@@ -10,42 +8,44 @@ import Car from "./components/Car";
 import Team from "./components/Team";
 import Sponsors from "./components/Sponsors";
 import Contact from "./components/Contact";
-import Footer from "./components/footer";
-import LearnMore from "./assets/pages/LearnMore";
-import Gallery from "./assets/pages/gallery";
+import Footer from "./components/Footer";
+import LearnMore from "./components/LearnMore";
+import Gallery from "./components/Gallery";
 
-function App() {
-  const [count, setCount] = useState(0);
-
+export default function App() {
   return (
-    <div className=" w-full overflow-x-hidden bg-black text-black font-sans bg-gradient-to-b from-black to-zinc-900">
+    <div className="w-full overflow-x-hidden bg-black text-white font-sans bg-gradient-to-b from-black to-zinc-900 min-h-screen flex flex-col">
       
+      {/* PERSISTENT GLOBAL NAVIGATION */}
       <Navbar />
 
-      <Routes>
-        {/* HOME PAGE (ALL SECTIONS) */}
-        <Route
-          path="/"
-          element={
-            <>
-              <Home />
-              <About />
-              <Car />
-              <Team />
-              <Sponsors />
-              <Contact />
-            </>
-          }
-        />
+      {/* CORE ROUTING EXECUTION ENGINE */}
+      <main className="flex-grow">
+        <Routes>
+          {/* HOME PAGE (ALL ARCHITECTURAL SECTIONS STACKED ON ONE ROUTE) */}
+          <Route
+            path="/"
+            element={
+              <>
+                <Home />
+                <About />
+                <Car />
+                <Team />
+                <Sponsors />
+                <Contact />
+              </>
+            }
+          />
 
-        {/* LEARN MORE PAGE */}
-        <Route path="/learn-more" element={<LearnMore />} />
-        <Route path="/gallery" element={<Gallery />} />
-      </Routes>
+          {/* STANDALONE SUB-ROUTES */}
+          <Route path="/learn-more" element={<LearnMore />} />
+          <Route path="/gallery" element={<Gallery />} />
+        </Routes>
+      </main>
 
+      {/* PERSISTENT GLOBAL FOOTER */}
       <Footer />
+      
     </div>
   );
 }
-
-export default App;

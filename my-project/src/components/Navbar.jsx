@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import ait_logo from "../assets/ait_logo.png";
-import army_logo from "../assets/baja1.jpeg";
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const navItems = [
     { name: "Home", id: "home" },
@@ -16,23 +16,45 @@ export default function Navbar() {
     { name: "Gallery", path: "/gallery", type: "route" },
   ];
 
-  //  IMPROVED SCROLL FUNCTION (FIXED MOBILE ISSUE)
-  const handleClick = (id) => {
+  // SCROLL EXECUTION ENGINE
+  const scrollToSection = (id) => {
     const section = document.getElementById(id);
-
     if (section) {
-      const yOffset = -80; // navbar height
-      const y =
-        section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      const yOffset = -80; // Navbar height offset
+      const y = section.getBoundingClientRect().top + window.scrollY + yOffset;
 
       window.scrollTo({
         top: y,
         behavior: "smooth",
       });
     }
-
-    setMenuOpen(false);
   };
+
+  // HANDLES BOTH SAME-PAGE SCROLLING AND CROSS-PAGE ROUTING
+  const handleClick = (id) => {
+    setMenuOpen(false);
+
+    if (location.pathname !== "/") {
+      // If not on home page, navigate home first with state telling it where to scroll
+      navigate("/", { state: { scrollToId: id } });
+    } else {
+      // If already home, scroll immediately
+      scrollToSection(id);
+    }
+  };
+
+  // LISTEN FOR INCOMING REDIRECTION SCROLL REQUESTS
+  useEffect(() => {
+    if (location.pathname === "/" && location.state?.scrollToId) {
+      // Small timeout ensures the DOM elements have safely mounted before calculating scroll positions
+      const timer = setTimeout(() => {
+        scrollToSection(location.state.scrollToId);
+        // Clear history state to avoid scrolling again on manual page refreshes
+        navigate(".", { replace: true, state: {} });
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [location, navigate]);
 
   return (
     <>
@@ -41,10 +63,10 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           
           {/* LEFT LOGO */}
-          <a href="https://www.aitpune.com/">
+          <a href="https://www.aitpune.com/" target="_blank" rel="noopener noreferrer">
             <img
-              src={ait_logo}
-              alt="logo"
+              src="/assets/ait_logo.png"
+              alt="AIT Pune Logo"
               className="h-10 md:h-14 object-contain"
             />
           </a>
@@ -63,11 +85,11 @@ export default function Navbar() {
           <a
             href="https://www.indianarmy.nic.in/"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             <img
-              src={army_logo}
-              alt="logo"
+              src="/assets/baja1.jpeg"
+              alt="Indian Army Logo"
               className="h-10 md:h-14 object-contain"
             />
           </a>
@@ -79,53 +101,59 @@ export default function Navbar() {
         <div className="flex items-center justify-between px-6 md:px-16 h-14">
 
           {/* MOBILE MENU BUTTON */}
-          <div
-            className="md:hidden text-2xl cursor-pointer"
+          <button
+            type="button"
+            className="md:hidden text-2xl cursor-pointer bg-transparent border-none text-white focus:outline-none"
             onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle Navigation Menu"
           >
             ☰
-          </div>
+          </button>
 
           {/* DESKTOP MENU */}
           <ul className="hidden md:flex gap-6 text-sm font-medium mx-auto">
-            {navItems.map((item, index) => (
-              <li key={index}>
+            {navItems.map((item) => (
+              <li key={item.id || item.path}>
                 {item.type === "route" ? (
-                  <Link to={item.path}>{item.name}</Link>
+                  <Link to={item.path} className="hover:text-gray-200 transition">
+                    {item.name}
+                  </Link>
                 ) : (
-                  <span
+                  <button
+                    type="button"
                     onClick={() => handleClick(item.id)}
-                    className="cursor-pointer hover:text-gray-200 transition"
+                    className="cursor-pointer hover:text-gray-200 transition bg-transparent border-none text-white font-medium p-0"
                   >
                     {item.name}
-                  </span>
+                  </button>
                 )}
               </li>
             ))}
           </ul>
         </div>
 
-        {/*  MOBILE DROPDOWN (UPDATED) */}
+        {/* MOBILE DROPDOWN */}
         {menuOpen && (
           <div className="md:hidden flex flex-col items-center gap-4 py-4 bg-green-200 text-black">
-            {navItems.map((item, index) =>
+            {navItems.map((item) =>
               item.type === "route" ? (
                 <Link
-                  key={index}
+                  key={item.path}
                   to={item.path}
                   onClick={() => setMenuOpen(false)}
-                  className="cursor-pointer"
+                  className="cursor-pointer hover:text-green-800 font-medium w-full text-center py-1"
                 >
                   {item.name}
                 </Link>
               ) : (
-                <div
-                  key={index}
+                <button
+                  key={item.id}
+                  type="button"
                   onClick={() => handleClick(item.id)}
-                  className="cursor-pointer"
+                  className="cursor-pointer hover:text-green-800 font-medium w-full text-center py-1 bg-transparent border-none text-black text-base"
                 >
                   {item.name}
-                </div>
+                </button>
               )
             )}
           </div>

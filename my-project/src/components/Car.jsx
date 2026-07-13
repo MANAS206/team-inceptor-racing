@@ -1,7 +1,13 @@
-import carImg from "../assets/ebaja.jpg";
 import { motion } from "framer-motion";
 
 export default function Car() {
+  const specs = [
+    { label: "Top Speed", value: "120 km/h" },
+    { label: "Power", value: "80 HP" },
+    { label: "Weight", value: "210 kg" },
+    { label: "0–100", value: "3.2 s" },
+  ];
+
   return (
     <section
       id="car"
@@ -11,6 +17,7 @@ export default function Car() {
       <motion.h2
         initial={{ opacity: 0, y: -40 }}
         whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.6 }}
         className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4"
       >
@@ -21,6 +28,7 @@ export default function Car() {
       <motion.div
         initial={{ width: 0 }}
         whileInView={{ width: "80px" }}
+        viewport={{ once: true }}
         transition={{ duration: 0.6 }}
         className="h-1 bg-black mb-10 md:mb-16"
       />
@@ -28,25 +36,27 @@ export default function Car() {
       {/* Content */}
       <div className="grid md:grid-cols-2 gap-10 md:gap-20 items-center">
         
-        {/* Image */}
+        {/* Image Frame */}
         <motion.div
           initial={{ opacity: 0, x: -80 }}
           whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7 }}
           className="w-full h-[250px] sm:h-[350px] md:h-[420px]"
         >
           <img
-            src={carImg}
-            alt="E-Baja Car"
-            className="w-full h-full object-cover rounded-xl shadow-xl 
-                       hover:scale-105 hover:shadow-2xl transition duration-500"
+            src="/assets/ebaja.jpg"
+            alt="Team Inceptor E-BAJA high-performance electric all-terrain vehicle"
+            className="w-full h-full object-cover rounded-xl shadow-xl hover:scale-105 hover:shadow-2xl transition duration-500"
+            loading="lazy"
           />
         </motion.div>
 
-        {/* Text */}
+        {/* Technical Summary & Stats */}
         <motion.div
           initial={{ opacity: 0, x: 80 }}
           whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7 }}
           className="space-y-6 md:space-y-10"
         >
@@ -58,23 +68,18 @@ export default function Car() {
             terrains.
           </p>
 
-          {/* Specs */}
+          {/* Specs Layout Grid */}
           <div className="grid grid-cols-2 gap-4 sm:gap-6 md:gap-8">
-            {[
-              { label: "Top Speed", value: "120 km/h" },
-              { label: "Power", value: "80 HP" },
-              { label: "Weight", value: "210 kg" },
-              { label: "0–100", value: "3.2 s" },
-            ].map((item, index) => (
+            {specs.map((item) => (
               <motion.div
-                key={index}
+                key={item.label}
                 whileHover={{ scale: 1.05 }}
-                className="p-3 sm:p-4 rounded-lg hover:bg-gray-100 transition cursor-pointer"
+                className="p-3 sm:p-4 rounded-lg hover:bg-gray-100 transition cursor-pointer border border-transparent hover:border-gray-200"
               >
-                <div className="text-xs sm:text-sm text-gray-500">
+                <div className="text-xs sm:text-sm text-gray-500 font-medium">
                   {item.label}
                 </div>
-                <div className="text-lg sm:text-xl md:text-2xl font-bold">
+                <div className="text-lg sm:text-xl md:text-2xl font-black mt-1">
                   {item.value}
                 </div>
               </motion.div>

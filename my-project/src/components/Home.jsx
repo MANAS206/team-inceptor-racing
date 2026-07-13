@@ -1,39 +1,70 @@
 import { useState, useEffect } from "react";
-import img1 from "../assets/aitphoto3.JPG";
-import img2 from "../assets/home1.jpeg";
-import img3 from "../assets/home2.jpeg";
+
+// Kept outside the component definition to avoid re-allocation on every single render frame
+const SLIDER_IMAGES = [
+  { src: "/assets/aitphoto3.JPG", alt: "Team Inceptor racing track vehicle showcase" },
+  { src: "/assets/home1.jpeg", alt: "Off-road vehicle dynamic engineering view" },
+  { src: "/assets/home2.jpeg", alt: "Team Inceptor workshop and testing grounds" }
+];
 
 export default function Home() {
-  const images = [img1, img2, img3];
   const [current, setCurrent] = useState(0);
 
-  //  AUTO SLIDE
+  // AUTOMATED ROTATION TRACKER
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % images.length);
-    }, 4000); // change every 3 sec
+      setCurrent((prev) => (prev + 1) % SLIDER_IMAGES.length);
+    }, 4000); // Transitions seamlessly every 4 seconds
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section id="home" className="relative w-full h-[70vh] md:h-[90vh] overflow-hidden">
+    <section id="home" className="relative w-full h-[70vh] md:h-[90vh] overflow-hidden bg-black">
 
-      {/* SLIDER */}
+      {/* HORIZONTAL TRACK SYSTEM */}
       <div
-        className="flex transition-transform duration-700"
+        className="flex h-full transition-transform duration-700 ease-in-out"
         style={{ transform: `translateX(-${current * 100}%)` }}
       >
-        {images.map((img, index) => (
+        {SLIDER_IMAGES.map((img, index) => (
           <img
-            key={index}
-            src={img}
-            className="w-full h-[70vh] md:h-[90vh] object-cover flex-shrink-0"
+            key={img.src}
+            src={img.src}
+            alt={img.alt}
+            className="w-full h-full object-cover flex-shrink-0"
+            loading={index === 0 ? "eager" : "lazy"} 
           />
         ))}
       </div>
 
-      
+      {/* OPTIONAL HERO TEXT OVERLAY GRAPHIC */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-8 md:p-16">
+        <div className="max-w-3xl text-white">
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight uppercase mb-2 drop-shadow-md">
+            Built to Conquer
+          </h2>
+          <p className="text-sm md:text-lg text-gray-200 drop-shadow-sm max-w-xl">
+            Pioneering student-led automotive engineering out of AIT Pune. Designing high-performance ATVs for the next era of racing.
+          </p>
+        </div>
+      </div>
+
+      {/* OPTIONAL SLIDER DOT INDICATORS */}
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
+        {SLIDER_IMAGES.map((_, index) => (
+          <button
+            key={index}
+            type="button"
+            onClick={() => setCurrent(index)}
+            className={`h-2.5 rounded-full transition-all duration-300 ${
+              current === index ? "w-8 bg-green-500" : "w-2.5 bg-white/50"
+            }`}
+            aria-label={`Jump directly to race vehicle slide slide number ${index + 1}`}
+          />
+        ))}
+      </div>
+
     </section>
   );
 }

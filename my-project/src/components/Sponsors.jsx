@@ -1,14 +1,14 @@
-import sponsors1 from "../assets/Ansys2.webp";
-import sponsors2 from "../assets/SolidWorks.webp";
-import sponsors3 from "../assets/onshape.png";
-import sponsors4 from "../assets/C2M.png";
-
 export default function Sponsors() {
-  const sponsors = [
-    sponsors1, sponsors2, sponsors3, sponsors4,
-    sponsors1, sponsors2, sponsors3, sponsors4,
-    sponsors1, sponsors2, sponsors3, sponsors4 // loop
+  // Core sponsor list with direct public paths and names for valid alt tags
+  const baseSponsors = [
+    { name: "Ansys", img: "/assets/Ansys2.webp" },
+    { name: "SolidWorks", img: "/assets/SolidWorks.webp" },
+    { name: "Onshape", img: "/assets/onshape.png" },
+    { name: "C2M", img: "/assets/C2M.png" },
   ];
+
+  // Duplicating the array to create the loop needed for the marquee track
+  const sponsors = [...baseSponsors, ...baseSponsors, ...baseSponsors];
 
   return (
     <section className="bg-olive-200 py-12 md:py-16 overflow-hidden" id="sponsors">
@@ -30,9 +30,9 @@ export default function Sponsors() {
         {/* SCROLL TRACK */}
         <div className="flex gap-6 md:gap-10 animate-scroll px-6 md:px-16">
 
-          {sponsors.map((img, i) => (
+          {sponsors.map((sponsor, i) => (
             <div
-              key={i}
+              key={`sponsor-${i}`}
               className="
                 min-w-[120px] md:min-w-[180px]
                 h-[80px] md:h-[120px]
@@ -45,8 +45,8 @@ export default function Sponsors() {
               "
             >
               <img
-                src={img}
-                alt="sponsor"
+                src={sponsor.img}
+                alt={`${sponsor.name} logo`}
                 className="max-h-[60px] md:max-h-[90px] object-contain"
               />
             </div>
