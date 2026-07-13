@@ -8,9 +8,9 @@ import Car from "./components/Car";
 import Team from "./components/Team";
 import Sponsors from "./components/Sponsors";
 import Contact from "./components/Contact";
-import Footer from "./components/Footer";
+import Footer from "./components/footer";
 import LearnMore from "./components/LearnMore";
-import Gallery from "./components/Gallery";
+import Gallery from "./components/gallery";
 
 export default function App() {
   return (
