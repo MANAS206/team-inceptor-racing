@@ -4,7 +4,7 @@ import { FaLinkedin } from "react-icons/fa";
 import img1 from "../teamphoto/navdeep.jpeg";
 import img2 from "../teamphoto/ram.jpg";
 import img3 from "../teamphoto/sanskar.jpg";
-import img4 from "../teamphoto/navdeep.jpeg";
+import img4 from "../teamphoto/manas.jpeg";
 import img5 from "../teamphoto/rajat.jpg";
 import img6 from "../teamphoto/sounik.jpeg";
 import img7 from "../teamphoto/lokesh.jpg";
@@ -35,13 +35,13 @@ export default function Team() {
   ];
 
   const teamLeads = [
-    { name: "Navdeep Singh", role: "Team Lead", img: img1, linkedin: "https://www.linkedin.com/in/navdeep-singh-381967270?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
-    { name: "Ramswaroop Swami", role: "Lead", img: img2, linkedin: "https://www.linkedin.com/in/ramswaroop-swami-51544540b?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
-    { name: "Sanskar Pandey", role: "Lead", img: img3, linkedin: "https://www.linkedin.com/in/sanskar-pandey-a76533321?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
-    { name: "Manas Patidar", role: "Lead", img: img4, linkedin: "https://www.linkedin.com/in/manas-patidar-996595321?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
-    { name: "Rajat Singh Chauhan", role: "Lead", img: img5, linkedin: "https://www.linkedin.com/in/rajatchauhan2004?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
-    { name: "Sounik Jana", role: "Lead", img: img6, linkedin: "https://www.linkedin.com/in/sounik-jana-1a280a312?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
-    { name: "Lokesh Chandra", role: "Lead", img: img7, linkedin: "https://www.linkedin.com/in/lokesh-chandra-b417b5203?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
+    { name: "Navdeep Singh", role: "Team Captain", img: img1, linkedin: "https://www.linkedin.com/in/navdeep-singh-381967270?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
+    { name: "Ramswaroop Swami", role: "Matlab Lead", img: img2, linkedin: "https://www.linkedin.com/in/ramswaroop-swami-51544540b?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
+    { name: "Sanskar Pandey", role: "CAE Lead", img: img3, linkedin: "https://www.linkedin.com/in/sanskar-pandey-a76533321?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
+    { name: "Manas Patidar", role: "Technical Head", img: img4, linkedin: "https://www.linkedin.com/in/manas-patidar-996595321?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
+    { name: "Rajat Singh Chauhan", role: "Structural Design Lead", img: img5, linkedin: "https://www.linkedin.com/in/rajatchauhan2004?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
+    { name: "Sounik Jana", role: "3D Modeling", img: img6, linkedin: "https://www.linkedin.com/in/sounik-jana-1a280a312?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
+    { name: "Lokesh Chandra", role: "Testing Head", img: img7, linkedin: "https://www.linkedin.com/in/lokesh-chandra-b417b5203?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
   ];
 
   const engineers = [
@@ -108,13 +108,17 @@ export default function Team() {
       </div>
 
       {/* MENTORS */}
-      <h3 className="text-xl md:text-2xl font-semibold mb-8">
-        Mentors
-      </h3>
+<h3 className="text-xl md:text-2xl font-semibold mb-8 text-center">
+  Mentors
+</h3>
 
-      <div className=" flex justify-center grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-        {mentors.map((m, i) => <Card key={i} member={m} />)}
-      </div>
+<div className="max-w-4xl mx-auto mb-16 px-4">
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+    {mentors.map((m, i) => (
+      <Card key={i} member={m} />
+    ))}
+  </div>
+</div>
 
       {/* TEAM LEADS */}
       <h3 className="text-xl md:text-2xl font-semibold mb-8">
@@ -142,17 +146,24 @@ export default function Team() {
             Engineering Team
           </h3>
 
-          {/* 🔥 4 PER ROW */}
+          {/*  4 PER ROW */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-12">
             {engineers.map((m, i) => <Card key={i} member={m} />)}
           </div>
 
           <button
-            onClick={() => setShowMore(false)}
-            className="bg-gray-700 text-white px-6 py-2 rounded-md"
-          >
-            See Less
-          </button>
+  onClick={() => {
+    setShowMore(false);
+
+    teamRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }}
+  className="bg-gray-700 text-white px-6 py-2 rounded-md"
+>
+  See Less
+</button>
         </>
       )}
     </section>

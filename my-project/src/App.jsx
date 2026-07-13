@@ -18,7 +18,7 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className="bg-black text-black font-sans bg-gradient-to-b from-black to-zinc-900">
+    <div className=" w-full overflow-x-hidden bg-black text-black font-sans bg-gradient-to-b from-black to-zinc-900">
       
       <Navbar />
 

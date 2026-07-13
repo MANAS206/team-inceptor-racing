@@ -6,7 +6,6 @@ import army_logo from "../assets/baja1.jpeg";
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // NAV ITEMS WITH IDs
   const navItems = [
     { name: "Home", id: "home" },
     { name: "About Us", id: "about" },
@@ -17,26 +16,30 @@ export default function Navbar() {
     { name: "Gallery", path: "/gallery", type: "route" },
   ];
 
-  // SCROLL FUNCTION
+  // ✅ IMPROVED SCROLL FUNCTION (FIXED MOBILE ISSUE)
   const handleClick = (id) => {
     const section = document.getElementById(id);
 
     if (section) {
+      const yOffset = -80; // navbar height
+      const y =
+        section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
       window.scrollTo({
-        top: section.offsetTop - 70, // adjust for navbar height
+        top: y,
         behavior: "smooth",
       });
     }
 
-    setMenuOpen(false); // close mobile menu
+    setMenuOpen(false);
   };
 
   return (
     <>
-      {/*  TOP WHITE BAR (NOT FIXED) */}
+      {/* TOP WHITE BAR */}
       <div className="bg-white py-3 px-4 md:px-10 border-b">
         <div className="flex items-center justify-between">
-
+          
           {/* LEFT LOGO */}
           <a href="https://www.aitpune.com/">
             <img
@@ -71,49 +74,60 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/*  FIXED BLUE NAVBAR */}
+      {/* FIXED NAVBAR */}
       <nav className="sticky top-0 z-50 bg-green-700 text-white">
         <div className="flex items-center justify-between px-6 md:px-16 h-14">
 
-          {/*  MOBILE MENU BUTTON */}
+          {/* MOBILE MENU BUTTON */}
           <div
-            className="md:hidden text-2xl text-black cursor-pointer"
+            className="md:hidden text-2xl cursor-pointer"
             onClick={() => setMenuOpen(!menuOpen)}
           >
             ☰
           </div>
 
-          {/*  DESKTOP MENU */}
+          {/* DESKTOP MENU */}
           <ul className="hidden md:flex gap-6 text-sm font-medium mx-auto">
-  {navItems.map((item, index) => (
-    <li key={index}>
-      {item.type === "route" ? (
-        <Link to={item.path}>{item.name}</Link>
-      ) : (
-        <span
-          onClick={() => handleClick(item.id)}
-          className="cursor-pointer hover:text-gray-200 transition"
-        >
-          {item.name}
-        </span>
-      )}
-    </li>
-  ))}
-</ul>
+            {navItems.map((item, index) => (
+              <li key={index}>
+                {item.type === "route" ? (
+                  <Link to={item.path}>{item.name}</Link>
+                ) : (
+                  <span
+                    onClick={() => handleClick(item.id)}
+                    className="cursor-pointer hover:text-gray-200 transition"
+                  >
+                    {item.name}
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
         </div>
 
-        {/*  MOBILE DROPDOWN */}
+        {/* ✅ MOBILE DROPDOWN (UPDATED) */}
         {menuOpen && (
-          <div className="md:hidden flex flex-col items-center gap-4 py-4 bg-cyan-600">
-            {navItems.map((item) => (
-              <div
-                key={item.id}
-                onClick={() => handleClick(item.id)}
-                className="cursor-pointer"
-              >
-                {item.name}
-              </div>
-            ))}
+          <div className="md:hidden flex flex-col items-center gap-4 py-4 bg-green-200 text-black">
+            {navItems.map((item, index) =>
+              item.type === "route" ? (
+                <Link
+                  key={index}
+                  to={item.path}
+                  onClick={() => setMenuOpen(false)}
+                  className="cursor-pointer"
+                >
+                  {item.name}
+                </Link>
+              ) : (
+                <div
+                  key={index}
+                  onClick={() => handleClick(item.id)}
+                  className="cursor-pointer"
+                >
+                  {item.name}
+                </div>
+              )
+            )}
           </div>
         )}
       </nav>
