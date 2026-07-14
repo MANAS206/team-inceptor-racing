@@ -77,8 +77,8 @@ export default function Team() {
 
       <div className="flex justify-center mb-16">
         <div className="bg-white p-6 rounded-xl shadow-lg w-[260px]">
-          <img src="/teamphoto/pankaj.jpeg" alt="Mr. Pankaj Dorlikar" className="w-28 h-28 mx-auto rounded-xl mb-4" />
-          <h4 className="font-semibold">Mr. Pankaj Dorlikar</h4>
+          <img src="/teamphoto/Pankaj.jpeg" alt="Mr. Pankaj Dorlikar" className="w-28 h-28 mx-auto rounded-xl mb-4" />
+          <h4 className=" text-black font-semibold">Mr. Pankaj Dorlikar</h4>
           <p className="text-gray-500 text-sm">Assistant Professor</p>
         </div>
       </div>
@@ -118,7 +118,7 @@ export default function Team() {
       {/* ENGINEERS */}
       {showMore && (
         <>
-          <h3 className="text-xl md:text-2xl font-semibold mb-8">
+          <h3 className="text-black text-xl md:text-2xl font-semibold mb-8">
             Engineering Team
           </h3>
 

@@ -14,7 +14,7 @@ import Gallery from "./components/gallery";
 
 export default function App() {
   return (
-    <div className="w-full overflow-x-hidden bg-black text-white font-sans bg-gradient-to-b from-black to-zinc-900 min-h-screen flex flex-col">
+    <div className="w-full  bg-black text-white font-sans bg-gradient-to-b from-black to-zinc-900 min-h-screen flex flex-col">
       
       {/* PERSISTENT GLOBAL NAVIGATION */}
       <Navbar />

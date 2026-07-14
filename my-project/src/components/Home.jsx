@@ -44,8 +44,8 @@ export default function Home() {
           <h2 className="text-3xl md:text-5xl font-black tracking-tight uppercase mb-2 drop-shadow-md">
             Built to Conquer
           </h2>
-          <p className="text-sm md:text-lg text-gray-200 drop-shadow-sm max-w-xl">
-            Pioneering student-led automotive engineering out of AIT Pune. Designing high-performance ATVs for the next era of racing.
+          <p className=" text-white text-sm md:text-lg  drop-shadow-sm max-w-xl">
+            “From AIT Pune to the track — we design and build high-performance ATVs.”
           </p>
         </div>
       </div>
